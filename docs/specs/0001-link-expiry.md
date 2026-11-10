@@ -23,14 +23,14 @@ Out (do not build):
 
 ## Behaviour
 
-| Given                           | When                                      | Then                                            |
-| ------------------------------- | ----------------------------------------- | ----------------------------------------------- |
-| now = 2026-01-01T00:00Z         | `POST /api/links {url, expiresInDays: 7}` | 201, `expiresAt = 2026-01-08T00:00:00.000Z`     |
-| no `expiresInDays`              | create                                    | `expiresAt = null`, never expires               |
-| `expiresInDays: 0` or `366`     | create                                    | 400 `invalid_request`                           |
-| link expires in 1 day           | `GET /:slug` before expiry                | 302 to the target URL                           |
-| link expired (now >= expiresAt) | `GET /:slug`                              | 410 `{ "error": "expired" }`, click not counted |
-| link expired                    | `GET /api/links/:slug`                    | 200 with `expired: true`                        |
+| Given | When | Then |
+| --- | --- | --- |
+| now = 2026-01-01T00:00Z | `POST /api/links {url, expiresInDays: 7}` | 201, `expiresAt = 2026-01-08T00:00:00.000Z` |
+| no `expiresInDays` | create | `expiresAt = null`, never expires |
+| `expiresInDays: 0` or `366` | create | 400 `invalid_request` |
+| link expires in 1 day | `GET /:slug` before expiry | 302 to the target URL |
+| link expired (now >= expiresAt) | `GET /:slug` | 410 `{ "error": "expired" }`, click not counted |
+| link expired | `GET /api/links/:slug` | 200 with `expired: true` |
 
 ## Definition of done
 

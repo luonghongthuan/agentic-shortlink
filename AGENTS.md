@@ -19,13 +19,13 @@ docs/tasks/       task breakdown for a spec, written by the planner
 
 ## Commands
 
-| Purpose                            | Command                               |
-| ---------------------------------- | ------------------------------------- |
-| Install                            | `pnpm install --frozen-lockfile`      |
-| One test file                      | `pnpm vitest run test/<file>.test.ts` |
-| Full gate (run before saying done) | `pnpm check`                          |
-| Format and autofix                 | `pnpm format`                         |
-| Run locally                        | `cp .env.example .env && pnpm dev`    |
+| Purpose | Command |
+| --- | --- |
+| Install | `pnpm install --frozen-lockfile` |
+| One test file | `pnpm vitest run test/<file>.test.ts` |
+| Full gate (run before saying done) | `pnpm check` |
+| Format and autofix | `pnpm format` |
+| Run locally | `cp .env.example .env && pnpm dev` |
 
 Prefer the single-file test while iterating; run `pnpm check` once at the end.
 
@@ -63,8 +63,8 @@ Used by `@codex review`, the CI review workflows and the `reviewer` subagent.
 
 ## Review levels
 
-| Change                                | Required before merge                                         |
-| ------------------------------------- | ------------------------------------------------------------- |
-| Tests, docs, `src/lib/` helpers       | CI green                                                      |
-| Routes, repo, validation              | CI green + AI review + one human approval                     |
+| Change | Required before merge |
+| --- | --- |
+| Tests, docs, `src/lib/` helpers | CI green |
+| Routes, repo, validation | CI green + AI review + one human approval |
 | Schema, auth, workflows, dependencies | CI green + AI review from two model families + human approval |
