@@ -49,12 +49,19 @@ const tryHook = (cmd) =>
 if (existsSync(hook)) {
   for (const c of [
     "git push origin main",
+    "git -C . push",
+    "git -c core.x=y push origin",
+    'bash -c "git push"',
     "git add -A",
+    "git add .",
     "rm -rf node_modules",
+    "rm -r -f dist",
+    "rm --recursive --force dist",
     "git commit --no-verify -m x",
   ])
     ok(tryHook(c) === 2, `guard blocks: ${c}`);
-  for (const c of ["git add src/a.ts", "git status"]) ok(tryHook(c) === 0, `guard allows: ${c}`);
+  for (const c of ["git add src/a.ts", "git status", "git log --oneline -5", "rm -f tmp.txt"])
+    ok(tryHook(c) === 0, `guard allows: ${c}`);
   for (const m of readFileSync(hook, "utf8").matchAll(/"(\S+ \S+|\S+) is run by a human/g)) {
     const sample = {
       "firebase deploy": "npx firebase deploy --only hosting",
@@ -73,6 +80,16 @@ ok(
   JSON.stringify(settings?.permissions?.deny ?? []).includes("Read(./.env)"),
   "deny rule for .env",
 );
+ok(
+  JSON.stringify(settings?.permissions?.deny ?? []).includes("--output"),
+  "deny rule for git diff/log --output",
+);
+const fmt = join(dir, ".claude/hooks/format-file.mjs");
+if (existsSync(fmt))
+  ok(
+    /shell metacharacter|could interpret/.test(readFileSync(fmt, "utf8")),
+    "format hook rejects shell metacharacters",
+  );
 for (const w of ["ai-review-claude.yml", "ai-review-codex.yml"]) {
   const y = read(`.github/workflows/${w}`);
   if (!y) continue;

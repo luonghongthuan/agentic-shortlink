@@ -111,6 +111,10 @@ const ask = [
   "Edit(AGENTS.md)",
 ];
 const deny = [
+  "Bash(git diff *--output*)",
+  "Bash(git log *--output*)",
+  "Bash(git diff *--ext-diff*)",
+  "Bash(git * -c *)",
   "Read(./.env)",
   "Read(./.env.local)",
   "Read(./.env.*.local)",

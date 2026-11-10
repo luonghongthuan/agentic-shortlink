@@ -15,8 +15,23 @@
       "Bash(git add *)",
       "Bash(git commit *)"
     ],
-    "ask": ["Bash(git push *)", "Bash(pnpm add *)", "Edit(.github/**)", "Edit(AGENTS.md)"],
-    "deny": ["Read(./.env)", "Read(./.env.*)", "Read(./**/*.db)", "Bash(curl *)", "Bash(wget *)"]
+    "ask": [
+      "Bash(git push *)",
+      "Bash(pnpm add *)",
+      "Edit(.github/**)",
+      "Edit(AGENTS.md)"
+    ],
+    "deny": [
+      "Bash(git diff *--output*)",
+      "Bash(git log *--output*)",
+      "Bash(git diff *--ext-diff*)",
+      "Bash(git * -c *)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./**/*.db)",
+      "Bash(curl *)",
+      "Bash(wget *)"
+    ]
   },
   "hooks": {
     "PreToolUse": [
