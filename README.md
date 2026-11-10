@@ -8,6 +8,15 @@ Claude Code, Codex and other agents can work in it quickly without losing contro
 
 ![Agent workflow loop](docs/diagrams/01-loop.en.png)
 
+## The series
+
+1. Architecture and model roles: [English](https://luonghongthuan.com/en/blog/agentic-dev-a-z-01-architecture-models/) · [Tiếng Việt](https://luonghongthuan.com/vi/blog/agentic-dev-a-z-01-architecture-models/)
+2. Repo setup for Claude Code and Codex: [English](https://luonghongthuan.com/en/blog/agentic-dev-a-z-02-repo-setup/) · [Tiếng Việt](https://luonghongthuan.com/vi/blog/agentic-dev-a-z-02-repo-setup/)
+3. Spec, plan, tasks: [English](https://luonghongthuan.com/en/blog/agentic-dev-a-z-03-spec-plan-tasks/) · [Tiếng Việt](https://luonghongthuan.com/vi/blog/agentic-dev-a-z-03-spec-plan-tasks/)
+4. Parallel agents, multiple providers: [English](https://luonghongthuan.com/en/blog/agentic-dev-a-z-04-parallel-multi-provider/) · [Tiếng Việt](https://luonghongthuan.com/vi/blog/agentic-dev-a-z-04-parallel-multi-provider/)
+5. CI/CD with AI review: [English](https://luonghongthuan.com/en/blog/agentic-dev-a-z-05-cicd-ai-review/) · [Tiếng Việt](https://luonghongthuan.com/vi/blog/agentic-dev-a-z-05-cicd-ai-review/)
+6. Operating it: cost, security, learning: [English](https://luonghongthuan.com/en/blog/agentic-dev-a-z-06-operate-cost-security/) · [Tiếng Việt](https://luonghongthuan.com/vi/blog/agentic-dev-a-z-06-operate-cost-security/)
+
 ## Quick start
 
 ```bash
