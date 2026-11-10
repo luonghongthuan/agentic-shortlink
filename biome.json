@@ -1,7 +1,15 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "files": {
-    "includes": ["**", "!dist", "!coverage", "!**/*.db", "!.claude", "!**/*.md"]
+    "includes": [
+      "**",
+      "!dist",
+      "!coverage",
+      "!**/*.db",
+      "!.claude",
+      "!**/*.md",
+      "!tools/agent-repo-setup/templates"
+    ]
   },
   "formatter": {
     "indentStyle": "space",
