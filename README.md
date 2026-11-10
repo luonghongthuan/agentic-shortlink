@@ -29,13 +29,14 @@ curl -s localhost:3000/api/links/demo
 
 ## API
 
-| Method   | Path               | Notes                                                  |
-| -------- | ------------------ | ------------------------------------------------------ |
-| `POST`   | `/api/links`       | body `{ url, slug?, expiresInDays? }` -> 201, 400, 409 |
-| `GET`    | `/:slug`           | 302 to the URL; 404 unknown; 410 expired (spec 0001)   |
-| `GET`    | `/api/links/:slug` | stats: `clicks`, `expiresAt`, `expired`                |
-| `DELETE` | `/api/links/:slug` | header `x-api-key: $ADMIN_API_KEY` -> 204              |
-| `GET`    | `/health`          | `{ "status": "ok" }`                                   |
+| Method   | Path                                  | Notes                                                                  |
+| -------- | ------------------------------------- | ---------------------------------------------------------------------- |
+| `POST`   | `/api/links`                          | body `{ url, slug?, expiresInDays? }` -> 201, 400, 409                 |
+| `GET`    | `/:slug`                              | 302 to the URL; 404 unknown; 410 expired (spec 0001)                   |
+| `GET`    | `/api/links/:slug`                    | stats: `clicks`, `expiresAt`, `expired`                                |
+| `GET`    | `/api/links/:slug/stats/daily?days=N` | daily clicks, oldest first, zero-filled; N 1-90, default 7 (spec 0002) |
+| `DELETE` | `/api/links/:slug`                    | header `x-api-key: $ADMIN_API_KEY` -> 204                              |
+| `GET`    | `/health`                             | `{ "status": "ok" }`                                                   |
 
 ## What is in the repo
 
