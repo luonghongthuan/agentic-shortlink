@@ -1,0 +1,31 @@
+name: claude-mention
+
+# Comment "@claude <request>" on a PR or issue. Only users with write access can trigger it.
+# Enable with: repo Settings > Secrets > ANTHROPIC_API_KEY and Variables > ENABLE_AI_REVIEW = true.
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+
+jobs:
+  claude:
+    if: vars.ENABLE_AI_REVIEW == 'true' && contains(github.event.comment.body, '@claude')
+    runs-on: {{RUNS_ON}}
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      actions: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+      - uses: anthropics/claude-code-action@9eb012b6d0900c2b9eede65ee1758cec4d2973e9 # v1.0.270
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_args: >-
+            --model claude-sonnet-5-5
+            --max-turns 30
