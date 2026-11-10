@@ -1,0 +1,8 @@
+flowchart LR
+  F["Something went wrong<br/>or had to be repeated"] --> Q{"Will it happen again?"}
+  Q -- "rule for every task" --> A["AGENTS.md"]
+  Q -- "recurring procedure" --> SK["Skill / slash command"]
+  Q -- "must never happen" --> HK["Hook or permission deny rule"]
+  Q -- "checkable" --> TS["Test or CI step"]
+  Q -- "one-off" --> N["Leave it"]
+  A & SK & HK & TS --> NX["Next run starts smarter"]

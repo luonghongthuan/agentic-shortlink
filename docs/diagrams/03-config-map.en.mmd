@@ -1,0 +1,27 @@
+flowchart LR
+  subgraph Shared
+    AG["AGENTS.md<br/>project rules, commands,<br/>Code Review Rules"]
+    SP["docs/specs/*.md<br/>source of truth per feature"]
+  end
+  subgraph ClaudeCode["Claude Code"]
+    CM["CLAUDE.md<br/>@AGENTS.md + Claude notes"]
+    ST[".claude/settings.json<br/>permissions + hooks"]
+    HK[".claude/hooks/*.mjs<br/>guard, format"]
+    SA[".claude/agents/<br/>reviewer, refuter"]
+    SK[".claude/skills/<br/>new-spec, implement-spec"]
+  end
+  subgraph Codex
+    CX[".codex/config.toml<br/>model, sandbox, approvals"]
+    PF["~/.codex/*.config.toml<br/>profiles, providers"]
+  end
+  subgraph CI["GitHub Actions"]
+    W1["ci.yml"]
+    W2["ai-review-claude.yml"]
+    W3["ai-review-codex.yml"]
+  end
+  AG --> CM
+  AG --> CX
+  AG --> W2
+  AG --> W3
+  ST --> HK
+  SP --> SK

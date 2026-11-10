@@ -1,0 +1,14 @@
+flowchart TB
+  S["1 Spec<br/><i>người viết, agent làm rõ</i>"] --> P["2 Plan<br/><i>model mạnh, chỉ đọc</i>"]
+  P --> G1{{"Người duyệt kế hoạch"}}
+  G1 --> E["3 Execute<br/><i>mỗi task một worktree</i>"]
+  E --> V["4 Verify<br/><i>pnpm check, chạy app</i>"]
+  V -- fail --> E
+  V --> R["5 Review<br/><i>AI review + lớp bác bỏ</i>"]
+  R -- phát hiện lỗi --> E
+  R --> G2{{"Cổng duyệt của người<br/>diff + bằng chứng"}}
+  G2 --> M["6 Merge & deploy"]
+  M --> L["7 Ghi lại<br/><i>cập nhật AGENTS.md, skill</i>"]
+  L -. feature tiếp theo .-> S
+  classDef human fill:#fde68a,stroke:#b45309,color:#111
+  class G1,G2 human

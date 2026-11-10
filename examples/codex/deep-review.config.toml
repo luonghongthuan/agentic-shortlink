@@ -1,0 +1,8 @@
+# Codex profile: copy to ~/.codex/deep-review.config.toml, then run
+#   codex --profile deep-review
+# Profiles are one file each with top-level keys (no [profiles.x] table since Codex 0.134).
+
+model = "gpt-6.1-sol"
+model_reasoning_effort = "high"
+approval_policy = "never"
+sandbox_mode = "read-only"

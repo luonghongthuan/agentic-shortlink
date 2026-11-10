@@ -10,9 +10,11 @@ One paragraph: who needs this and why. No solution here.
 ## Scope
 
 In:
+
 - ...
 
 Out (do not build):
+
 - ...
 
 ## Behaviour
@@ -20,8 +22,8 @@ Out (do not build):
 Describe the observable behaviour as concrete examples. Prefer request/response pairs.
 
 | Given | When | Then |
-|---|---|---|
-| ... | ... | ... |
+| ----- | ---- | ---- |
+| ...   | ...  | ...  |
 
 ## Definition of done
 

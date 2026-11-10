@@ -1,0 +1,14 @@
+# Codex profile that sends requests through a local LiteLLM proxy (gateway/litellm.config.yaml).
+# Copy to ~/.codex/litellm.config.toml, then run
+#   LITELLM_KEY=sk-... codex --profile litellm
+# Codex only speaks the OpenAI Responses API (wire_api = "responses"); test that your
+# gateway route supports it before relying on it.
+
+model = "gpt-6.1-sol"
+model_provider = "litellm"
+
+[model_providers.litellm]
+name = "LiteLLM gateway"
+base_url = "http://localhost:4000/v1"
+env_key = "LITELLM_KEY"
+wire_api = "responses"

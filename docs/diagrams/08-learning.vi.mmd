@@ -1,0 +1,8 @@
+flowchart LR
+  F["Có lỗi xảy ra<br/>hoặc phải nhắc lại"] --> Q{"Có lặp lại không?"}
+  Q -- "quy tắc cho mọi task" --> A["AGENTS.md"]
+  Q -- "quy trình lặp lại" --> SK["Skill / slash command"]
+  Q -- "không bao giờ được xảy ra" --> HK["Hook hoặc deny rule"]
+  Q -- "kiểm tra được bằng máy" --> TS["Test hoặc bước CI"]
+  Q -- "chỉ một lần" --> N["Bỏ qua"]
+  A & SK & HK & TS --> NX["Lần chạy sau thông minh hơn"]

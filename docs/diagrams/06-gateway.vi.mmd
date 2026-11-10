@@ -1,0 +1,9 @@
+flowchart LR
+  CC["Claude Code<br/>ANTHROPIC_BASE_URL"] --> GW
+  CX["Codex CLI<br/>model_providers.litellm"] --> GW
+  SC["Script của bạn<br/>OpenAI SDK"] --> GW
+  GW["LiteLLM proxy :4000<br/>key, ngân sách, log, fallback"]
+  GW --> AN["Anthropic<br/>Claude"]
+  GW --> OA["OpenAI<br/>GPT / model Codex"]
+  GW --> GE["Google<br/>Gemini"]
+  GW --> OL["Ollama (local)<br/>model open-weight"]
