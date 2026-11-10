@@ -45,8 +45,23 @@ export class LinkRepo {
     return row ? toLink(row) : null;
   }
 
-  recordClick(slug: string): void {
-    this.db.prepare("UPDATE links SET clicks = clicks + 1 WHERE slug = ?").run(slug);
+  recordClick(slug: string, day: string): void {
+    this.db.transaction(() => {
+      this.db.prepare("UPDATE links SET clicks = clicks + 1 WHERE slug = ?").run(slug);
+      this.db
+        .prepare(
+          `INSERT INTO link_clicks (slug, day, clicks) VALUES (?, ?, 1)
+           ON CONFLICT(slug, day) DO UPDATE SET clicks = clicks + 1`,
+        )
+        .run(slug, day);
+    })();
+  }
+
+  dailyClicks(slug: string, fromDay: string, toDay: string): Map<string, number> {
+    const rows = this.db
+      .prepare("SELECT day, clicks FROM link_clicks WHERE slug = ? AND day BETWEEN ? AND ?")
+      .all(slug, fromDay, toDay) as { day: string; clicks: number }[];
+    return new Map(rows.map((r) => [r.day, r.clicks]));
   }
 
   delete(slug: string): boolean {

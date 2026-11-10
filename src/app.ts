@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { z } from "zod";
+import { fillDays, lastNDays, utcDay } from "./lib/days.js";
 import { generateSlug, isValidCustomSlug } from "./lib/slug.js";
 import type { Link, LinkRepo } from "./repo.js";
 
@@ -14,6 +15,10 @@ const CreateLinkSchema = z.object({
   url: z.url({ protocol: /^https?$/ }),
   slug: z.string().optional(),
   expiresInDays: z.number().int().min(1).max(365).optional(),
+});
+
+const DailyStatsQuery = z.object({
+  days: z.coerce.number().int().min(1).max(90).default(7),
 });
 
 const MAX_SLUG_ATTEMPTS = 5;
@@ -62,6 +67,18 @@ export function createApp({ repo, baseUrl, adminApiKey, now = () => new Date() }
     return c.json({ ...link, shortUrl: shortUrl(link.slug), expired: isExpired(link, now()) });
   });
 
+  app.get("/api/links/:slug/stats/daily", (c) => {
+    const query = DailyStatsQuery.safeParse({ days: c.req.query("days") });
+    if (!query.success) {
+      return c.json({ error: "invalid_request", issues: query.error.issues }, 400);
+    }
+    const link = repo.find(c.req.param("slug"));
+    if (!link) return c.json({ error: "not_found" }, 404);
+    const days = lastNDays(now(), query.data.days);
+    const counts = repo.dailyClicks(link.slug, days[0] ?? "", days.at(-1) ?? "");
+    return c.json({ slug: link.slug, days: fillDays(days, counts) });
+  });
+
   app.delete("/api/links/:slug", (c) => {
     if (c.req.header("x-api-key") !== adminApiKey) {
       return c.json({ error: "unauthorized" }, 401);
@@ -75,7 +92,7 @@ export function createApp({ repo, baseUrl, adminApiKey, now = () => new Date() }
     const link = repo.find(c.req.param("slug"));
     if (!link) return c.json({ error: "not_found" }, 404);
     if (isExpired(link, now())) return c.json({ error: "expired" }, 410);
-    repo.recordClick(link.slug);
+    repo.recordClick(link.slug, utcDay(now()));
     return c.redirect(link.url, 302);
   });
 

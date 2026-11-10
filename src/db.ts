@@ -13,6 +13,13 @@ export function openDb(path: string): Db {
       expires_at  TEXT,
       clicks      INTEGER NOT NULL DEFAULT 0
     );
+    CREATE TABLE IF NOT EXISTS link_clicks (
+      slug    TEXT NOT NULL REFERENCES links(slug) ON DELETE CASCADE,
+      day     TEXT NOT NULL,
+      clicks  INTEGER NOT NULL DEFAULT 0,
+      PRIMARY KEY (slug, day)
+    );
   `);
+  db.pragma("foreign_keys = ON");
   return db;
 }
