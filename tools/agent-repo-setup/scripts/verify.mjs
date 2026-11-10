@@ -87,8 +87,8 @@ ok(
 const fmt = join(dir, ".claude/hooks/format-file.mjs");
 if (existsSync(fmt))
   ok(
-    /shell metacharacter|could interpret/.test(readFileSync(fmt, "utf8")),
-    "format hook rejects shell metacharacters",
+    !/shell:\s*(true|process)/.test(readFileSync(fmt, "utf8")),
+    "format hook runs without a shell",
   );
 for (const w of ["ai-review-claude.yml", "ai-review-codex.yml"]) {
   const y = read(`.github/workflows/${w}`);

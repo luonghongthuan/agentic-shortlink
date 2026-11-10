@@ -48,12 +48,14 @@ const testOne =
       : (gateParts.at(-1) ?? null);
 const formatter = deps["@biomejs/biome"]
   ? {
-      cmd: ["npx", "biome", "check", "--write", "--no-errors-on-unmatched"],
+      bin: "node_modules/@biomejs/biome/bin/biome",
+      args: ["check", "--write", "--no-errors-on-unmatched"],
       ext: "\\.(ts|tsx|js|jsx|mjs|json)$",
     }
   : deps.prettier
     ? {
-        cmd: ["npx", "prettier", "--write", "--ignore-unknown"],
+        bin: "node_modules/prettier/bin/prettier.cjs",
+        args: ["--write", "--ignore-unknown"],
         ext: "\\.(ts|tsx|js|jsx|mjs|json|css|md)$",
       }
     : null;
@@ -133,7 +135,7 @@ else {
     `repo: ${dir}  pm: ${pm ?? "-"}  gate: ${report.gate ?? "(none found)"}  test one: ${testOne ?? "-"}`,
   );
   console.log(
-    `runners: ${runsOn.join(", ") || "-"}  formatter: ${formatter ? formatter.cmd.slice(0, 2).join(" ") : "-"}`,
+    `runners: ${runsOn.join(", ") || "-"}  formatter: ${formatter ? formatter.bin : "-"}`,
   );
   console.log(`prod commands to guard: ${prod.map((p) => p.name).join(", ") || "-"}`);
   if (deploysOnMain) console.log("  NOTE a push to main deploys to production (deploy job in CI)");

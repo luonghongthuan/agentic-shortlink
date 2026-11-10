@@ -34,7 +34,9 @@ const vars = {
   INSTALL: audit.install ?? "<install command>",
   BASE: base,
   RUNS_ON: runsOn,
-  FORMAT_CMD: audit.formatter ? JSON.stringify(audit.formatter.cmd) : "null",
+  FORMAT_CMD: audit.formatter
+    ? JSON.stringify({ bin: audit.formatter.bin, args: audit.formatter.args })
+    : "null",
   FORMAT_EXT: audit.formatter?.ext ?? "$^",
   PROD_SAFETY:
     (audit.deploysOnMain
