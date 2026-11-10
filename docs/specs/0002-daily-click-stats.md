@@ -21,13 +21,13 @@ Out (do not build):
 
 ## Behaviour
 
-| Given                                                                             | When                                      | Then                                                                                                                                    |
-| --------------------------------------------------------------------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| Given | When | Then |
+| --- | --- | --- |
 | link `promo` clicked twice on 2026-01-01 and once on 2026-01-03; now = 2026-01-03 | `GET /api/links/promo/stats/daily?days=3` | 200 `{ "slug": "promo", "days": [{"date":"2026-01-01","clicks":2},{"date":"2026-01-02","clicks":0},{"date":"2026-01-03","clicks":1}] }` |
-| no `days` param                                                                   | same request                              | 7 entries                                                                                                                               |
-| `days=0`, `days=91`, `days=abc`                                                   | same request                              | 400 `invalid_request`                                                                                                                   |
-| unknown slug                                                                      | same request                              | 404 `not_found`                                                                                                                         |
-| expired link visited                                                              | `GET /:slug`                              | 410, no row recorded (same rule as spec 0001)                                                                                           |
+| no `days` param | same request | 7 entries |
+| `days=0`, `days=91`, `days=abc` | same request | 400 `invalid_request` |
+| unknown slug | same request | 404 `not_found` |
+| expired link visited | `GET /:slug` | 410, no row recorded (same rule as spec 0001) |
 
 ## Definition of done
 
