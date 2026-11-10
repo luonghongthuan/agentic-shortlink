@@ -9,3 +9,4 @@ coverage/
 CLAUDE.local.md
 .worktrees/
 agent-runs/
+.claude/worktrees/

@@ -1,0 +1,16 @@
+sequenceDiagram
+  actor H as Human
+  participant P as Planner (plan mode)
+  participant X as Executor
+  participant T as Tests / pnpm check
+  H->>P: docs/specs/0002-*.md
+  P->>P: read code, AGENTS.md (no edits)
+  P-->>H: questions + task table (docs/tasks/0002-*.md)
+  H->>P: answers, approve plan
+  loop each task T1..Tn
+    H->>X: "do T2, check: pnpm vitest run test/daily-stats.test.ts"
+    X->>T: write failing test, then code
+    T-->>X: red / green
+    X-->>H: done + verified (command, output)
+  end
+  H->>T: pnpm check

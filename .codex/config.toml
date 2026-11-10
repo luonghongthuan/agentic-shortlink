@@ -1,0 +1,11 @@
+# Project config for Codex CLI. Applies only when this project is trusted.
+# Provider settings (model_provider, model_providers, profiles) are not allowed here;
+# put them in ~/.codex/config.toml or a profile file. See examples/codex/.
+
+model = "gpt-6.1-sol"
+model_reasoning_effort = "medium"
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+
+[sandbox_workspace_write]
+network_access = false

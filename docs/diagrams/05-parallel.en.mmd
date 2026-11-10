@@ -1,0 +1,14 @@
+flowchart LR
+  M[("main")] --> W1["worktree A<br/>agent/0002-repo<br/>Claude Code"]
+  M --> W2["worktree B<br/>agent/0002-route<br/>Codex exec"]
+  M --> W3["worktree C<br/>agent/readme<br/>any model"]
+  W1 --> C1["pnpm check ✓"]
+  W2 --> C2["pnpm check ✓"]
+  W3 --> C3["pnpm check ✓"]
+  C1 --> PR1["PR #1"]
+  C2 --> PR2["PR #2"]
+  C3 --> PR3["PR #3"]
+  PR1 & PR2 & PR3 --> REV["Cross-model review<br/>Claude reviews Codex, Codex reviews Claude"]
+  REV --> H{{"Human merges"}}
+  classDef human fill:#fde68a,stroke:#b45309,color:#111
+  class H human

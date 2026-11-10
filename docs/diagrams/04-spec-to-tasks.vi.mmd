@@ -1,0 +1,16 @@
+sequenceDiagram
+  actor H as Người
+  participant P as Planner (plan mode)
+  participant X as Executor
+  participant T as Test / pnpm check
+  H->>P: docs/specs/0002-*.md
+  P->>P: đọc code, AGENTS.md (không sửa)
+  P-->>H: câu hỏi + bảng task (docs/tasks/0002-*.md)
+  H->>P: trả lời, duyệt kế hoạch
+  loop mỗi task T1..Tn
+    H->>X: "làm T2, kiểm tra: pnpm vitest run test/daily-stats.test.ts"
+    X->>T: viết test fail trước, rồi viết code
+    T-->>X: đỏ / xanh
+    X-->>H: xong + đã kiểm tra (lệnh, output)
+  end
+  H->>T: pnpm check

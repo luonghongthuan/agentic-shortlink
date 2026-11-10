@@ -1,0 +1,23 @@
+flowchart LR
+  subgraph Vai trò
+    PL["Planner / orchestrator"]
+    EX["Executor"]
+    RV1["Reviewer chính"]
+    RV2["Reviewer thứ hai"]
+    RT["Router, phân loại, trích xuất"]
+    LC["Việc nhạy cảm hoặc offline"]
+  end
+  subgraph Model
+    A1["Claude Opus / Fable<br/>hoặc GPT reasoning cao"]
+    A2["Claude Sonnet<br/>hoặc model mặc định của Codex"]
+    A3["Claude trong CI<br/>claude-code-action"]
+    A4["Codex trong CI<br/>codex-action"]
+    A5["Claude Haiku / GPT nhỏ"]
+    A6["Model open-weight local<br/>qua Ollama"]
+  end
+  PL --> A1
+  EX --> A2
+  RV1 --> A3
+  RV2 --> A4
+  RT --> A5
+  LC --> A6

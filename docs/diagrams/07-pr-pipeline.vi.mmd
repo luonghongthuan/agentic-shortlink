@@ -1,0 +1,15 @@
+flowchart TB
+  PR["Mở / cập nhật pull request"] --> CI["ci.yml<br/>lint · typecheck · test · build"]
+  PR --> RC["ai-review-claude.yml<br/>claude-code-action, chỉ đọc"]
+  PR --> RX["ai-review-codex.yml<br/>codex-action, sandbox chỉ đọc"]
+  CI --> BP{"Branch protection<br/>bắt buộc: ci"}
+  RC --> CM["Comment trên PR"]
+  RX --> CM
+  CM --> H{{"Người review<br/>đọc bằng chứng"}}
+  BP --> H
+  H -- "@claude sửa X" --> MEN["claude-mention.yml<br/>push thêm commit"]
+  MEN --> PR
+  H --> MG["Merge vào main"]
+  MG --> DEP["job release / deploy"]
+  classDef human fill:#fde68a,stroke:#b45309,color:#111
+  class H human

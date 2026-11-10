@@ -1,0 +1,23 @@
+flowchart LR
+  subgraph Roles
+    PL["Planner / orchestrator"]
+    EX["Executor"]
+    RV1["Primary reviewer"]
+    RV2["Second-opinion reviewer"]
+    RT["Router, triage, extraction"]
+    LC["Sensitive or offline work"]
+  end
+  subgraph Models
+    A1["Claude Opus / Fable<br/>or GPT high reasoning"]
+    A2["Claude Sonnet<br/>or Codex default model"]
+    A3["Claude in CI<br/>claude-code-action"]
+    A4["Codex in CI<br/>codex-action"]
+    A5["Claude Haiku / small GPT"]
+    A6["Local open-weight model<br/>via Ollama"]
+  end
+  PL --> A1
+  EX --> A2
+  RV1 --> A3
+  RV2 --> A4
+  RT --> A5
+  LC --> A6

@@ -1,0 +1,15 @@
+flowchart TB
+  PR["Pull request opened / updated"] --> CI["ci.yml<br/>lint · typecheck · test · build"]
+  PR --> RC["ai-review-claude.yml<br/>claude-code-action, read-only"]
+  PR --> RX["ai-review-codex.yml<br/>codex-action, read-only sandbox"]
+  CI --> BP{"Branch protection<br/>required: ci"}
+  RC --> CM["PR comments"]
+  RX --> CM
+  CM --> H{{"Human reviewer<br/>reads evidence"}}
+  BP --> H
+  H -- "@claude fix X" --> MEN["claude-mention.yml<br/>pushes a commit"]
+  MEN --> PR
+  H --> MG["Merge to main"]
+  MG --> DEP["release / deploy job"]
+  classDef human fill:#fde68a,stroke:#b45309,color:#111
+  class H human
