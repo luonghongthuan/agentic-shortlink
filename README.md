@@ -10,6 +10,9 @@ Claude Code, Codex and other agents can work in it quickly without losing contro
 
 ## The series
 
+Watch the whole series as one video: [English (25 min)](https://youtu.be/9YlPszIyBkM) · [Tiếng Việt (21 phút)](https://youtu.be/2cQeWVnvYWI)
+
+
 1. Architecture and model roles: [English](https://luonghongthuan.com/en/blog/agentic-dev-a-z-01-architecture-models/) · [Tiếng Việt](https://luonghongthuan.com/vi/blog/agentic-dev-a-z-01-architecture-models/)
 2. Repo setup for Claude Code and Codex: [English](https://luonghongthuan.com/en/blog/agentic-dev-a-z-02-repo-setup/) · [Tiếng Việt](https://luonghongthuan.com/vi/blog/agentic-dev-a-z-02-repo-setup/)
 3. Spec, plan, tasks: [English](https://luonghongthuan.com/en/blog/agentic-dev-a-z-03-spec-plan-tasks/) · [Tiếng Việt](https://luonghongthuan.com/vi/blog/agentic-dev-a-z-03-spec-plan-tasks/)
