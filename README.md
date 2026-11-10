@@ -19,6 +19,7 @@ Watch the whole series as one video: [English (25 min)](https://youtu.be/9YlPszI
 4. Parallel agents, multiple providers: [English](https://luonghongthuan.com/en/blog/agentic-dev-a-z-04-parallel-multi-provider/) · [Tiếng Việt](https://luonghongthuan.com/vi/blog/agentic-dev-a-z-04-parallel-multi-provider/)
 5. CI/CD with AI review: [English](https://luonghongthuan.com/en/blog/agentic-dev-a-z-05-cicd-ai-review/) · [Tiếng Việt](https://luonghongthuan.com/vi/blog/agentic-dev-a-z-05-cicd-ai-review/)
 6. Operating it: cost, security, learning: [English](https://luonghongthuan.com/en/blog/agentic-dev-a-z-06-operate-cost-security/) · [Tiếng Việt](https://luonghongthuan.com/vi/blog/agentic-dev-a-z-06-operate-cost-security/)
+7. Applying it to a real project (agent-repo-setup): [English](https://luonghongthuan.com/en/blog/agentic-dev-a-z-07-apply-real-project/) · [Tiếng Việt](https://luonghongthuan.com/vi/blog/agentic-dev-a-z-07-apply-real-project/)
 
 ## Quick start
 
