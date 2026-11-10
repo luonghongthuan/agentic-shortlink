@@ -1,0 +1,11 @@
+node_modules/
+dist/
+coverage/
+*.db
+*.db-journal
+.env
+.env.local
+.claude/settings.local.json
+CLAUDE.local.md
+.worktrees/
+agent-runs/
