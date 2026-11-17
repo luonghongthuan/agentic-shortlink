@@ -20,7 +20,7 @@
     "check": "pnpm lint && pnpm typecheck && pnpm test"
   },
   "dependencies": {
-    "@hono/node-server": "^2.1.6",
+    "@hono/node-server": "^2.1.8",
     "better-sqlite3": "^13.0.3",
     "hono": "^4.13.17",
     "zod": "^4.6.7"
